@@ -5,4 +5,15 @@
 
     <bean id="userBean" class="com.high.spring.bean.User"/>
 
+    <bean id="userMapper" class="com.high.spring.mapper.UserMapper"/>
+
+    <!--<bean id="userService" class="com.high.spring.service.UserService">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>-->
+
+    <bean id="userService" class="com.high.spring.service.UserService">
+        <!--<constructor-arg index="0" ref="userMapper"/>-->
+        <!--<constructor-arg type="com.high.spring.mapper.UserMapper" ref="userMapper"/>-->
+        <constructor-arg name="userMapper" ref="userMapper"/>
+    </bean>
 </beans>
