@@ -1,6 +1,6 @@
 package com.high.spring.test;
 
-import com.high.spring.bean.User;
+import com.high.spring.bean.*;
 import com.high.spring.service.UserService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -30,5 +30,37 @@ public class SpringTest {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         UserService userService = applicationContext.getBean("userService", UserService.class);
         userService.create();
+    }
+
+    @Test
+    public void testSetDI() {
+        // 内外部注入、注入简单类型
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        User user = applicationContext.getBean("user", User.class);
+        System.out.println(user);
+
+        // 级联属性赋值
+        Student student = applicationContext.getBean("student", Student.class);
+        System.out.println(student);
+
+        // 注入数组、List集合、Set集合、Map集合
+        Person person = applicationContext.getBean("person", Person.class);
+        System.out.println(person);
+
+        // 注入Properties集合
+        AttributeConfig attributeConfig = applicationContext.getBean("attributeConfig", AttributeConfig.class);
+        System.out.println(attributeConfig);
+
+        // 注入null
+        Clazz clazzNull = applicationContext.getBean("clazzNull", Clazz.class);
+        System.out.println(clazzNull.getName());
+
+        // 注入空字符串
+        Clazz clazzEmptyString = applicationContext.getBean("clazzEmptyString", Clazz.class);
+        System.out.println(clazzEmptyString);
+
+        // 注入特殊字符
+        Clazz clazzSpecialChar = applicationContext.getBean("clazzSpecialChar", Clazz.class);
+        System.out.println(clazzSpecialChar);
     }
 }

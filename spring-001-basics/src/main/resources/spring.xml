@@ -1,19 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="userBean" class="com.high.spring.bean.User"/>
+    <!--<bean id="userBean" class="com.high.spring.bean.User"/>-->
 
-    <bean id="userMapper" class="com.high.spring.mapper.UserMapper"/>
+    <!--外部注入-->
+    <!--<bean id="userMapper" class="com.high.spring.mapper.UserMapper"/>-->
 
+    <!--set注入-->
     <!--<bean id="userService" class="com.high.spring.service.UserService">
         <property name="userMapper" ref="userMapper"/>
     </bean>-->
 
-    <bean id="userService" class="com.high.spring.service.UserService">
-        <!--<constructor-arg index="0" ref="userMapper"/>-->
-        <!--<constructor-arg type="com.high.spring.mapper.UserMapper" ref="userMapper"/>-->
+    <!--构造注入-->
+    <!--<bean id="userService" class="com.high.spring.service.UserService">
+        &lt;!&ndash;<constructor-arg index="0" ref="userMapper"/>&ndash;&gt;
+        &lt;!&ndash;<constructor-arg type="com.high.spring.mapper.UserMapper" ref="userMapper"/>&ndash;&gt;
         <constructor-arg name="userMapper" ref="userMapper"/>
+    </bean>-->
+
+    <!--内部注入，较少使用-->
+    <!--<bean id="userService" class="com.high.spring.service.UserService">
+        <property name="userMapper">
+            <bean class="com.high.spring.mapper.UserMapper"/>
+        </property>
+    </bean>-->
+
+    <!--注入简单类型-->
+    <bean id="user" class="com.high.spring.bean.User">
+        <!--基本数据类型要用value，不能用ref，简单类型一般用value-->
+        <property name="age" value="21"/>
+    </bean>
+
+    <!--级联属性赋值-->
+    <bean id="clazz" class="com.high.spring.bean.Clazz"/>
+
+    <bean id="student" class="com.high.spring.bean.Student">
+        <property name="name" value="张三"/>
+        <!--先声明创建对象，后赋值-->
+        <property name="clazz" ref="clazz"/>
+        <!--级联属性clazz必须有getter方法getClazz-->
+        <property name="clazz.name" value="高三一班"/>
+    </bean>
+
+    <!--注入数组、List集合、Set集合、Map集合-->
+    <bean id="person" class="com.high.spring.bean.Person">
+        <property name="favouriteFoods">
+            <array>
+                <value>人参果</value>
+                <value>仙丹</value>
+                <value>唐僧</value>
+            </array>
+        </property>
+        <property name="name">
+            <list>
+                <value>张三</value>
+                <value>法外狂徒</value>
+                <value>过街老鼠</value>
+            </list>
+        </property>
+        <property name="phone">
+            <set>
+                <value>123456</value>
+                <value>233333</value>
+                <value>666666</value>
+            </set>
+        </property>
+        <property name="address">
+            <map>
+                <entry key="0" value="北京"/>
+                <entry key="1" value="上海"/>
+                <entry key="2" value="广州"/>
+                <entry key="3" value="深圳"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--注入Properties集合，也是一个Map集合-->
+    <bean id="attributeConfig" class="com.high.spring.bean.AttributeConfig">
+        <property name="properties">
+            <props>
+                <prop key="jdbc.driver">com.mysql.cj.jdbc.Driver</prop>
+                <prop key="jdbc.url">jdbc:mysql://localhost:3306/bjpowernode</prop>
+                <prop key="jdbc.username">root</prop>
+                <prop key="jdbc.password">123456</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--注入null-->
+    <!--<bean id="clazzNull" class="com.high.spring.bean.Clazz"/>-->
+    <bean id="clazzNull" class="com.high.spring.bean.Clazz">
+        <property name="name">
+            <null/>
+        </property>
+    </bean>
+
+    <!--注入空字符串-->
+    <bean id="clazzEmptyString" class="com.high.spring.bean.Clazz">
+        <property name="name" value=""/>
+        <!--<property name="name">
+            <value/>
+        </property>-->
+    </bean>
+
+    <!--注入特殊字符-->
+    <bean id="clazzSpecialChar" class="com.high.spring.bean.Clazz">
+        <!--<property name="name" value="2 &lt; 3"/>-->
+        <property name="name">
+            <value><![CDATA[2 < 3]]></value>
+        </property>
     </bean>
 </beans>

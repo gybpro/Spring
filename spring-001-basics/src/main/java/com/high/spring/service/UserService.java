@@ -12,6 +12,9 @@ import com.high.spring.mapper.UserMapper;
 public class UserService {
     private UserMapper userMapper;
 
+    public UserService() {
+    }
+
     public UserService(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
