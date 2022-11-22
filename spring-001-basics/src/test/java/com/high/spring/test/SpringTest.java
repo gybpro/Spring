@@ -62,5 +62,19 @@ public class SpringTest {
         // 注入特殊字符
         Clazz clazzSpecialChar = applicationContext.getBean("clazzSpecialChar", Clazz.class);
         System.out.println(clazzSpecialChar);
+
+        // p命名空间注入
+        Clazz clazzP = applicationContext.getBean("clazzP", Clazz.class);
+        System.out.println(clazzP);
+
+        // c命名空间注入
+        Clazz clazzC = applicationContext.getBean("clazzC", Clazz.class);
+        System.out.println(clazzC);
+
+        // util命名空间配置复用
+        AttributeConfig config1 = applicationContext.getBean("config1", AttributeConfig.class);
+        System.out.println(config1);
+        AttributeConfig config2 = applicationContext.getBean("config2", AttributeConfig.class);
+        System.out.println(config2);
     }
 }

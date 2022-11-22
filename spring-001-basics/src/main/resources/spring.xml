@@ -114,4 +114,25 @@
             <value><![CDATA[2 < 3]]></value>
         </property>
     </bean>
+
+    <!--p命名空间注入-->
+    <bean id="clazzP" class="com.high.spring.bean.Clazz" p:name="高三一班"/>
+
+    <!--c命名空间注入-->
+    <!--<bean id="clazzC" class="com.high.spring.bean.Clazz" c:_0="高三一班"/>-->
+    <bean id="clazzC" class="com.high.spring.bean.Clazz" c:name="高三一班"/>
+
+    <!--util命名空间配置复用-->
+    <util:properties id="properties">
+        <prop key="jdbc.driver">com.mysql.cj.jdbc.Driver</prop>
+        <prop key="jdbc.url">jdbc:mysql://localhost:3306/bjpowernode</prop>
+        <prop key="jdbc.username">root</prop>
+        <prop key="jdbc.password">123456</prop>
+    </util:properties>
+    <bean id="config1" class="com.high.spring.bean.AttributeConfig">
+        <property name="properties" ref="properties"/>
+    </bean>
+    <bean id="config2" class="com.high.spring.bean.AttributeConfig">
+        <property name="properties" ref="properties"/>
+    </bean>
 </beans>
