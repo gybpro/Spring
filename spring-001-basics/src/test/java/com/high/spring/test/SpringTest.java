@@ -76,5 +76,13 @@ public class SpringTest {
         System.out.println(config1);
         AttributeConfig config2 = applicationContext.getBean("config2", AttributeConfig.class);
         System.out.println(config2);
+
+        // 自动注入/装配，byName和byType
+        UserService userService = applicationContext.getBean("userService", UserService.class);
+        userService.create();
+
+        // 引入外部属性配置文件
+        AttributeConfig dataSource = applicationContext.getBean("dataSource", AttributeConfig.class);
+        System.out.println(dataSource);
     }
 }

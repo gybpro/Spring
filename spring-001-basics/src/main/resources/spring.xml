@@ -135,4 +135,28 @@
     <bean id="config2" class="com.high.spring.bean.AttributeConfig">
         <property name="properties" ref="properties"/>
     </bean>
+
+    <!--自动注入/装配，byName和byType-->
+    <bean id="userMapper" class="com.high.spring.mapper.UserMapper"/>
+
+    <!--<bean id="userService" class="com.high.spring.service.UserService" autowire="byName"/>-->
+    <bean id="userService" class="com.high.spring.service.UserService" autowire="byType"/>
+
+    <!--引入外部属性配置文件-->
+    <context:property-placeholder location="jdbc.properties"/>
+
+    <!--引入外部属性配置文件，读取内容时，${}中读取属性是先从Windows操作系统中读取，
+    然后再读取属性配置文件的内容，所以一般属性配置文件前面都会加技术名.，如jdbc.-->
+    <bean id="dataSource" class="com.high.spring.bean.AttributeConfig">
+        <property name="properties">
+            <props>
+                <prop key="driver">${jdbc.driver}</prop>
+                <prop key="url">${jdbc.url}</prop>
+                <!--这里如果不带jdbc.的话，会读取到Windows的用户名-->
+                <!--<prop key="username">${username}</prop>-->
+                <prop key="username">${jdbc.username}</prop>
+                <prop key="password">${jdbc.password}</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
