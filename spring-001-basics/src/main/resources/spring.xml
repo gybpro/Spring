@@ -159,4 +159,23 @@
             </props>
         </property>
     </bean>
+
+    <!--注册Scope类-->
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="simpleThread">
+                    <bean class="org.springframework.context.support.SimpleThreadScope"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--默认是singleton-->
+    <!--<bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="singleton"/>-->
+    <!--<bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="prototype"/>-->
+    <!--web作用域需要请求或开启会话进入请求或会话状态，才能调用getBean()-->
+    <!--<bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="request"/>-->
+    <!--<bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="session"/>-->
+    <bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="simpleThread"/>
 </beans>

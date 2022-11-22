@@ -85,4 +85,20 @@ public class SpringTest {
         AttributeConfig dataSource = applicationContext.getBean("dataSource", AttributeConfig.class);
         System.out.println(dataSource);
     }
+
+    @Test
+    public void testScope() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        System.out.println("还没有getBean()");
+        ScopeBean b1 = applicationContext.getBean("scopeBean", ScopeBean.class);
+        ScopeBean b2 = applicationContext.getBean("scopeBean", ScopeBean.class);
+        System.out.println(b1);
+        System.out.println(b2);
+        new Thread(() -> {
+            ScopeBean b3 = applicationContext.getBean("scopeBean", ScopeBean.class);
+            ScopeBean b4 = applicationContext.getBean("scopeBean", ScopeBean.class);
+            System.out.println(b3);
+            System.out.println(b4);
+        }).start();
+    }
 }
