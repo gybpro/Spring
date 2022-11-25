@@ -178,4 +178,14 @@
     <!--<bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="request"/>-->
     <!--<bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="session"/>-->
     <bean id="scopeBean" class="com.high.spring.bean.ScopeBean" scope="simpleThread"/>
+
+    <!--直接使用构造方法实例化Bean-->
+    <!--<bean id="userBean" class="com.high.spring.bean.User"/>-->
+    <!--简单工厂方法(静态工厂方法)实例化Bean-->
+    <!--<bean id="userBean" class="com.high.spring.bean.UserFactory" factory-method="getUser"/>-->
+    <!--工厂方法模式实例化Bean-->
+    <!--<bean id="userFactory" class="com.high.spring.bean.UserFactory"/>
+    <bean id="userBean" factory-bean="userFactory" factory-method="getUser"/>-->
+    <!--实现FactoryBean的方式实例化Bean-->
+    <bean id="userBean" class="com.high.spring.bean.UserFactory"/>
 </beans>

@@ -101,4 +101,11 @@ public class SpringTest {
             System.out.println(b4);
         }).start();
     }
+
+    @Test
+    public void testBeanInstance() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        User userBean = applicationContext.getBean("userBean", User.class);
+        System.out.println("userBean：" + userBean);
+    }
 }
