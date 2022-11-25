@@ -108,4 +108,11 @@ public class SpringTest {
         User userBean = applicationContext.getBean("userBean", User.class);
         System.out.println("userBean：" + userBean);
     }
+
+    @Test
+    public void testDateDI() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        People people = applicationContext.getBean("people", People.class);
+        System.out.println(people);
+    }
 }

@@ -188,4 +188,12 @@
     <bean id="userBean" factory-bean="userFactory" factory-method="getUser"/>-->
     <!--实现FactoryBean的方式实例化Bean-->
     <bean id="userBean" class="com.high.spring.bean.UserFactory"/>
+
+    <!--注入自定义Date-->
+    <bean id="date" class="com.high.spring.bean.DateFactory">
+        <constructor-arg index="0" value="2002-02-22"/>
+    </bean>
+    <bean id="people" class="com.high.spring.bean.People">
+        <property name="birth" ref="date"/>
+    </bean>
 </beans>
