@@ -10,13 +10,16 @@ import com.high.dev.dao.UserDao;
  * @since 1.0
  */
 public class UserService {
-    private final UserDao userDao;
+    private UserDao userDao;
 
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    public UserService() {
     }
 
-    public void service() {
-        System.out.println(userDao);
+    public void save() {
+        userDao.insert();
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

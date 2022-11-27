@@ -8,4 +8,7 @@ package com.high.dev.dao;
  * @since 1.0
  */
 public class UserDao {
+    public void insert() {
+        System.out.println("数据库正在保存用户信息......");
+    }
 }
