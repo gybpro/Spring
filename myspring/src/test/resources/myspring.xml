@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+
+    <bean id="user" class="com.high.myspring.bean.User">
+        <property name="name" value="张三"/>
+        <property name="age" value="20"/>
+    </bean>
+
+    <bean id="userDao" class="com.high.myspring.dao.UserDao"/>
+
+    <bean id="userService" class="com.high.myspring.service.UserService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="husband" class="com.high.myspring.bean.Husband">
+        <property name="name" value="小贝"/>
+        <property name="wife" ref="wife"/>
+    </bean>
+
+    <bean id="wife" class="com.high.myspring.bean.Wife">
+        <property name="name" value="小花"/>
+        <property name="husband" ref="husband"/>
+    </bean>
+
+</beans>
