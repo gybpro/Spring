@@ -1,4 +1,4 @@
-package com.high.dev.bean;
+package com.high.myspring.bean;
 
 /**
  * 用户类

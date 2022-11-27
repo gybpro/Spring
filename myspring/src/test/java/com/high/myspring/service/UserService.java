@@ -1,6 +1,6 @@
-package com.high.dev.service;
+package com.high.myspring.service;
 
-import com.high.dev.dao.UserDao;
+import com.high.myspring.dao.UserDao;
 
 /**
  * 用户相关业务类

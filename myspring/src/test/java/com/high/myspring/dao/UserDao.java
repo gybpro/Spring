@@ -1,4 +1,4 @@
-package com.high.dev.dao;
+package com.high.myspring.dao;
 
 /**
  * 用户相关DAO层类
