@@ -1,12 +1,12 @@
 package com.high.bean;
 
-import com.high.annotation.MyAnnotation;
+import com.high.annotation.Component;
 
 /**
  * @author high
  * @version 1.0
  * @since 1.0
  */
-@MyAnnotation("user")
+@Component("user")
 public class User {
 }
