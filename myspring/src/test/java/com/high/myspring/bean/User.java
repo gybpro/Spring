@@ -1,5 +1,6 @@
 package com.high.myspring.bean;
 
+import com.high.myspringframework.beans.factory.annotation.Value;
 import com.high.myspringframework.stereotype.Component;
 
 /**
@@ -11,8 +12,9 @@ import com.high.myspringframework.stereotype.Component;
  */
 @Component("user")
 public class User {
+    @Value("张三")
     private String name;
-
+    @Value("20")
     private int age;
 
     public User() {

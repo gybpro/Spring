@@ -1,5 +1,7 @@
 package com.high.myspringframework.context.annotation;
 
+import com.high.myspringframework.beans.factory.annotation.Qualifier;
+import com.high.myspringframework.beans.factory.annotation.Value;
 import com.high.myspringframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import com.high.myspringframework.context.ApplicationContext;
 import com.high.myspringframework.context.support.ClassPathXmlApplicationContext;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Arrays;
 
@@ -49,7 +52,59 @@ public class AnnotationConfigApplicationContext implements ApplicationContext {
                     String beanName = component.value();
                     Object bean = clazz.getDeclaredConstructor().newInstance();
                     registry.registerSingleton(beanName, bean);
-                    System.out.println(registry.getSingletonObjects());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        // 属性赋值(简单实现)
+        Arrays.stream(files).forEach(f -> {
+            // 获取全限定类名
+            String className = packageName + "." + f.getName().split("\\.")[0];
+            try {
+                // 获取类字节码
+                Class<?> clazz = Class.forName(className);
+                // 判断是否有标记注解
+                if (clazz.isAnnotationPresent(Component.class)) {
+                    Component component = clazz.getAnnotation(Component.class);
+                    String beanName = component.value();
+                    Object obj = registry.getSingleton(beanName);
+                    Field[] fields = clazz.getDeclaredFields();
+                    Arrays.stream(fields).forEach(field -> {
+                        try {
+                            Class<?> fieldType = field.getType();
+                            String fieldName = field.getName();
+                            String methodName = "set" + fieldName.toUpperCase().charAt(0) +
+                                    fieldName.substring(1);
+                            Method method = clazz.getDeclaredMethod(methodName, fieldType);
+                            if (field.isAnnotationPresent(Value.class)) {
+                                Value annotation = field.getAnnotation(Value.class);
+                                String value = annotation.value();
+                                if (value != null) {
+                                    Object realValue = null;
+                                    String simpleName = fieldType.getSimpleName();
+                                    switch (simpleName) {
+                                        case "byte", "Byte" -> realValue = Byte.valueOf(value);
+                                        case "short", "Short" -> realValue = Short.valueOf(value);
+                                        case "int", "Integer" -> realValue = Integer.valueOf(value);
+                                        case "long", "Long" -> realValue = Long.valueOf(value);
+                                        case "float", "Float" -> realValue = Float.valueOf(value);
+                                        case "boolean", "Boolean" -> realValue = Boolean.valueOf(value);
+                                        case "char", "Character" -> realValue = value.charAt(0);
+                                        case "String" -> realValue = value;
+                                    }
+                                    method.invoke(obj, realValue);
+                                }
+                            }
+                            if (field.isAnnotationPresent(Qualifier.class)) {
+                                Qualifier qualifier = field.getAnnotation(Qualifier.class);
+                                String ref = qualifier.value();
+                                method.invoke(obj, registry.getSingleton(ref));
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
                 }
             } catch (Exception e) {
                 e.printStackTrace();

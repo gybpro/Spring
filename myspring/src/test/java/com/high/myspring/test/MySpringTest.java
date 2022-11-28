@@ -29,11 +29,11 @@ public class MySpringTest {
         System.out.println(wife);
 
         applicationContext = new AnnotationConfigApplicationContext("com.high.myspring.bean");
-        /* user = applicationContext.getBean("user");
+        user = applicationContext.getBean("user");
         System.out.println(user);
         husband = applicationContext.getBean("husband");
         wife = applicationContext.getBean("wife");
         System.out.println(husband);
-        System.out.println(wife); */
+        System.out.println(wife);
     }
 }

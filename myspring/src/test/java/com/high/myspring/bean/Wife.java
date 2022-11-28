@@ -1,5 +1,7 @@
 package com.high.myspring.bean;
 
+import com.high.myspringframework.beans.factory.annotation.Qualifier;
+import com.high.myspringframework.beans.factory.annotation.Value;
 import com.high.myspringframework.stereotype.Component;
 
 /**
@@ -11,7 +13,9 @@ import com.high.myspringframework.stereotype.Component;
  */
 @Component("wife")
 public class Wife {
+    @Value("小花")
     private String name;
+    @Qualifier("husband")
     private Husband husband;
 
     public Wife() {
