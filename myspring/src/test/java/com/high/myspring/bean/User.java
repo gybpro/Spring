@@ -1,5 +1,7 @@
 package com.high.myspring.bean;
 
+import com.high.myspringframework.stereotype.Component;
+
 /**
  * 用户类
  *
@@ -7,6 +9,7 @@ package com.high.myspring.bean;
  * @version 1.0
  * @since 1.0
  */
+@Component("user")
 public class User {
     private String name;
 

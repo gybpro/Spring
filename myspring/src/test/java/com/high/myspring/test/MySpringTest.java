@@ -4,6 +4,7 @@ import com.high.myspring.bean.Husband;
 import com.high.myspring.bean.Wife;
 import com.high.myspring.service.UserService;
 import com.high.myspringframework.context.ApplicationContext;
+import com.high.myspringframework.context.annotation.AnnotationConfigApplicationContext;
 import com.high.myspringframework.context.support.ClassPathXmlApplicationContext;
 import org.junit.Test;
 
@@ -26,5 +27,13 @@ public class MySpringTest {
         Object wife = applicationContext.getBean("wife");
         System.out.println(husband);
         System.out.println(wife);
+
+        applicationContext = new AnnotationConfigApplicationContext("com.high.myspring.bean");
+        /* user = applicationContext.getBean("user");
+        System.out.println(user);
+        husband = applicationContext.getBean("husband");
+        wife = applicationContext.getBean("wife");
+        System.out.println(husband);
+        System.out.println(wife); */
     }
 }

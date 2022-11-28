@@ -1,5 +1,7 @@
 package com.high.myspring.bean;
 
+import com.high.myspringframework.stereotype.Component;
+
 /**
  * 丈夫类
  *
@@ -7,7 +9,9 @@ package com.high.myspring.bean;
  * @version 1.0
  * @since 1.0
  */
+@Component("husband")
 public class Husband {
+    @Value()
     private String name;
     private Wife wife;
 
