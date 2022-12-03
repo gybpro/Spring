@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<context:component-scan base-package="com.high.spring.bean" use-default-filters="false">
+        &lt;!&ndash;因为@Component是顶级注解，其他是别名注解，所以@Component生效时其他别名注解也生效&ndash;&gt;
+        &lt;!&ndash;<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>&ndash;&gt;
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>-->
+
+    <!--<context:component-scan base-package="com.high.spring.bean" use-default-filters="true">-->
+    <!--use-default-filters默认是true，可以省略-->
+    <!--<context:component-scan base-package="com.high.spring.bean">
+        &lt;!&ndash;因为@Component是顶级注解，其他是别名注解，所以@Component被排除时其他别名注解也失效&ndash;&gt;
+        &lt;!&ndash;<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component"/>&ndash;&gt;
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>-->
+
+    <context:component-scan base-package="com.high.spring.bean"/>
+
+</beans>
