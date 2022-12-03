@@ -4,9 +4,14 @@ import com.high.spring.jdbc.bean.User;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -145,5 +150,30 @@ public class JDBCTest {
         System.out.println(Arrays.toString(count));
     }
 
+    @Test
+    public void testCallback(){
+        // 获取JdbcTemplate对象
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        String sql = "select id, username, password from t_user where id = ?";
 
+        User user = jdbcTemplate.execute(sql, new PreparedStatementCallback<User>() {
+            @Override
+            public User doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+                User user = null;
+                // 手动为占位符传值
+                ps.setInt(1, 5);
+                // 处理查询结果集
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setPassword(rs.getString("password"));
+                }
+                return user;
+            }
+        });
+        System.out.println(user);
+    }
 }
