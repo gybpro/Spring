@@ -1,6 +1,7 @@
 package com.high.spring.service;
 
 import com.high.spring.mapper.UserMapper;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * 用户服务

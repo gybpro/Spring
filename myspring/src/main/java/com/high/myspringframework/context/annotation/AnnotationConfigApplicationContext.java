@@ -18,6 +18,9 @@ import java.util.Arrays;
 
 /**
  * MySpring容器加载注解配置类
+ * 源码不是如此，源码这个类是用于加载带@Configuration注解的配置类，
+ * 此处为了简便，直接扫描@Component，没有加载构建带@Configuration注解的配置类，
+ * 还是直接用ClassPathXmlApplicationContext的加载XML配置文件
  *
  * @author high
  * @version 1.0
