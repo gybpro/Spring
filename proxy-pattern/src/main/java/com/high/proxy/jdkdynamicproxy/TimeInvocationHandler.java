@@ -17,11 +17,11 @@ public class TimeInvocationHandler implements InvocationHandler {
     }
 
     /*
-        invoke方法的三个参数：
-            第一个参数：代理对象
-            第二个参数：目标对象调用的目标方法
-            第三个参数：目标方法的参数列表
-         */
+    InvocationHandler中invoke方法的三个参数：
+        第一个参数：代理对象
+        第二个参数：目标对象调用的目标方法
+        第三个参数：目标方法的参数列表
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         long start = System.currentTimeMillis();

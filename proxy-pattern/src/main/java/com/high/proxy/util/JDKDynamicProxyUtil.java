@@ -1,7 +1,5 @@
 package com.high.proxy.util;
 
-import com.high.proxy.jdkdynamicproxy.TimeInvocationHandler;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
@@ -11,7 +9,8 @@ import java.lang.reflect.Proxy;
  * @since 1.0
  */
 public class JDKDynamicProxyUtil {
-    private JDKDynamicProxyUtil() {}
+    private JDKDynamicProxyUtil() {
+    }
 
     public static Object newProxy(Object target, InvocationHandler handler) throws Exception {
         Class<?> clazz = target.getClass();
