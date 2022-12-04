@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 /**
+ * JDK动态代理工具类
+ *
  * @author high
  * @version 1.0
  * @since 1.0

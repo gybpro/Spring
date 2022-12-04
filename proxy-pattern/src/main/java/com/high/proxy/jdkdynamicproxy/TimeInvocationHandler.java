@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
+ * 计时调用处理程序/调用事件句柄计时类/调用事件发生时计时类
+ *
  * @author high
  * @version 1.0
  * @since 1.0
