@@ -3,6 +3,8 @@ package com.high.proxy.staticproxy;
 import com.high.proxy.bean.OrderService;
 
 /**
+ * 静态代理实现类
+ *
  * @author high
  * @version 1.0
  * @since 1.0
