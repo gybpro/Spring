@@ -19,7 +19,7 @@ public class OrderServiceImplProxy implements OrderService {
         long start = System.currentTimeMillis();
         orderService.generate();
         long end = System.currentTimeMillis();
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "累计耗时" + (end - start));
+        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "执行累计耗时" + (end - start));
     }
 
     @Override
@@ -27,7 +27,7 @@ public class OrderServiceImplProxy implements OrderService {
         long start = System.currentTimeMillis();
         orderService.modify();
         long end = System.currentTimeMillis();
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "累计耗时" + (end - start));
+        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "执行累计耗时" + (end - start));
     }
 
     @Override
@@ -35,6 +35,6 @@ public class OrderServiceImplProxy implements OrderService {
         long start = System.currentTimeMillis();
         orderService.detail();
         long end = System.currentTimeMillis();
-        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "累计耗时" + (end - start));
+        System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "执行累计耗时" + (end - start));
     }
 }
