@@ -27,9 +27,9 @@ public class TimeInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         long start = System.currentTimeMillis();
-        Object obj = method.invoke(target, args);
+        Object retValue = method.invoke(target, args);
         long end = System.currentTimeMillis();
         System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + "执行累计耗时" + (end - start));
-        return obj;
+        return retValue;
     }
 }

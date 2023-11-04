@@ -5,6 +5,8 @@ import com.high.proxy.staticproxy.OrderServiceImplProxy;
 import org.junit.Test;
 
 /**
+ * 静态代理测试类
+ *
  * @author high
  * @version 1.0
  * @since 1.0

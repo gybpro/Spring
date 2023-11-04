@@ -41,7 +41,7 @@ public class User implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAwa
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("第五步：在Bean后置处理器完成初始化前处理之后");
+        System.out.println("第五步：在Bean属性赋值之后");
     }
 
     public void initUser() {
@@ -50,10 +50,10 @@ public class User implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAwa
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("第九步：Bean被抛弃前");
+        System.out.println("第九步：Bean被抛弃前，DisposableBean的destroy方法");
     }
 
     public void destroyUser() {
-        System.out.println("第十步：Bean销毁前");
+        System.out.println("第十步：Bean销毁前，Bean的destroy方法");
     }
 }

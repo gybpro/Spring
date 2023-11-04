@@ -4,13 +4,16 @@ import com.high.proxy.bean.OrderService;
 
 /**
  * 静态代理实现类
+ *      优点：符合OCP开闭原则，耦合度低
+ *      缺陷：一个接口就要编写一个代理类，会导致类爆炸，可读性、可维护低
+ *      动态代理可以解决静态代理的缺陷
  *
  * @author high
  * @version 1.0
  * @since 1.0
  */
 public class OrderServiceImplProxy implements OrderService {
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public OrderServiceImplProxy(OrderService orderService) {
         this.orderService = orderService;

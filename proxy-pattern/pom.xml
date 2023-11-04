@@ -21,6 +21,13 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!--cglib依赖-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
 
 </project>
