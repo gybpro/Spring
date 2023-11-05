@@ -5,6 +5,7 @@ import com.high.spring.mapper.AccountDao;
 import com.high.spring.service.AccountService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -18,6 +19,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Resource(name = "accountDao")
     private AccountDao accountDao;
+
+    @Resource(name = "accountService2")
+    private AccountService accountService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -34,13 +38,29 @@ public class AccountServiceImpl implements AccountService {
         int count = accountDao.update(fromAct);
 
         // 模拟异常
-        String s = null;
-        s.toString();
+        /* String s = null;
+        s.toString(); */
 
         count += accountDao.update(toAct);
         if (count != 2) {
             throw new RuntimeException("转账失败，请联系银行");
         }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void save(Account act) {
+        // 这里调用dao的insert方法。
+        accountDao.insert(act); // 保存act-003账户
+
+        // 创建账户对象
+        Account act2 = new Account("act-004", 1000.0);
+        try {
+            accountService.save(act2); // 保存act-004账户
+        } catch (Exception e) {
+
+        }
+        // 继续往后进行当前1号事务自己的事儿。
     }
 
 }

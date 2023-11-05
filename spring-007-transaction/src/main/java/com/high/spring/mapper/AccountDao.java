@@ -13,17 +13,25 @@ public interface AccountDao {
     /**
      * 根据账号查询余额
      *
-     * @param actNo
-     * @return
+     * @param actNo 账户号
+     * @return 账户
      */
     Account selectByActNo(String actNo);
 
     /**
      * 更新账户
      *
-     * @param act
-     * @return
+     * @param act 账户
+     * @return int
      */
     int update(Account act);
+
+    /**
+     * 插入
+     *
+     * @param act 账户
+     * @return int
+     */
+    int insert(Account act);
 
 }

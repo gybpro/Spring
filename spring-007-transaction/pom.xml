@@ -15,11 +15,19 @@
     </properties>
 
     <dependencies>
+        <!-- Spring核心依赖 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>6.0.0</version>
         </dependency>
+        <!-- Spring整合AspectJ依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+        <!-- SpringJdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
