@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 组件扫描 -->
+    <!-- <context:component-scan base-package="com.high.spring"/> -->
+    <!--纳入spring bean管理-->
+    <bean id="logAspect" class="com.high.spring.aspect.LogAspect"/>
+    <bean id="securityAspect" class="com.high.spring.aspect.SecurityAspect"/>
+    <bean id="orderService" class="com.high.spring.service.impl.OrderServiceImpl"/>
+
+    <!-- 开启aspect自动代理
+        spring容器在扫描类时，会判断类上是否有@Aspect注解，如果有则会生成代理类
+        proxy-target-class="true" 表示强制使用CGLIB动态代理
+        默认为false，优先使用JDK动态代理，目标类没有实现接口时才使用CGLIB动态代理 -->
+    <!-- <aop:aspectj-autoproxy/> -->
+
+    <!-- AOP配置 -->
+    <aop:config>
+        <!-- 定义通用切点表达式 -->
+        <aop:pointcut id="servicePointcut" expression="execution(* com.high.spring.service.impl.*.*(..))"/>
+        <!-- 定义切面，切面 = 通知 + 切点 -->
+        <aop:aspect ref="logAspect">
+            <!-- 前置通知 -->
+            <aop:before method="beforeLog" pointcut-ref="servicePointcut"/>
+            <!-- 后置通知 -->
+            <aop:after-returning method="afterReturningLog" pointcut-ref="servicePointcut"/>
+            <!-- 异常通知 -->
+            <aop:after-throwing method="afterThrowingLog" pointcut-ref="servicePointcut"/>
+            <!-- 最终通知 -->
+            <aop:after method="afterLog" pointcut-ref="servicePointcut"/>
+            <!-- 环绕通知 -->
+            <aop:around method="aroundLog" pointcut-ref="servicePointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
